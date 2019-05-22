@@ -4,11 +4,11 @@ def get_first_name_of_season_winner(data, season)
     if k == season
       array.each do |lady|
         lady.each do |stat_id, stat_val|
-          first_name = ""
-          if stat_id == "name"
+          if lady["status"] == "Winner"
+            first_name = ""
             name_arr = lady["name"].split(" ")
             first_name += name_arr[0]
-            return first_name if stat_val == "Winner"
+            return first_name
           end
         end
       end
