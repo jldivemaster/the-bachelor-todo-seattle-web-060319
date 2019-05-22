@@ -33,10 +33,8 @@ def count_contestants_by_hometown(data, hometown)
   count = 0
   data.each do |season, array|
     array.each do |lady|
-      lady.each do |stat_id, stat_val|
-        if lady["hometown"] == hometown
-          count += 1
-        end
+      if lady["hometown"] == hometown
+        count += 1
       end
     end
   end
