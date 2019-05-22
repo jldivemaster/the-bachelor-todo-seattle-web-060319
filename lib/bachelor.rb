@@ -18,7 +18,7 @@ end
 
 
 def get_contestant_name(data, occupation)
-  data.each do |k, array|
+  data.each do |season, array|
     array.each do |lady|
       lady.each do |stat_id, stat_val|
         if lady["occupation"] == occupation
@@ -31,7 +31,7 @@ end
 
 def count_contestants_by_hometown(data, hometown)
   count = 0
-  data.each do |k, array|
+  data.each do |season, array|
     array.each do |lady|
       lady.each do |stat_id, stat_val|
         if lady["hometown"] == hometown
@@ -44,7 +44,7 @@ def count_contestants_by_hometown(data, hometown)
 end
 
 def get_occupation(data, hometown)
-  data.each do |k, array|
+  data.each do |season, array|
     array.each do |lady|
       lady.find do |stat_id, stat_val|
         if lady["hometown"] == hometown
@@ -56,10 +56,18 @@ def get_occupation(data, hometown)
 end
 
 def get_average_age_for_season(data, season)
+  age_count = 0
+  lady_count = 0
+  
   data.each do |k, array|
-    array.each do |lady|
-      lady.each do |stat_id, stat_val|
+    if k == season
+      array.each do |lady|
+        lady_count += 1
+        lady.each do |stat_id, stat_val|
+          age_count += lady["age"].to_f
+        end
       end
     end
   end
+  return age_count / lady_count
 end
