@@ -46,7 +46,10 @@ end
 def get_occupation(data, hometown)
   data.each do |k, array|
     array.each do |lady|
-      lady.each do |stat_id, stat_val|
+      lady.find do |stat_id, stat_val|
+        if lady["hometown"] == hometown
+          return lady["occupation"]
+        end
       end
     end
   end
